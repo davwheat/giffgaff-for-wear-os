@@ -37,50 +37,73 @@ class Goodybag(
             }
         }
 
-    val goodybagDrawableName: String
+    val goodybagDrawableId: Int
         get() {
-            var drawableName = when (sku) {
+
+            if (hasReserve) {
+                return when (sku) {
+                    // £10 goodybag
+                    "BD036" -> R.drawable.goodybag_10_reservetank
+
+                    // £10 golden goodybag
+                    "BD043" -> R.drawable.goodybag_10_golden_reservetank
+
+                    // £12 goodybag
+                    "BD037" -> R.drawable.goodybag_12_reservetank
+
+                    // £15 goodybag
+                    "BD038" -> R.drawable.goodybag_15_reservetank
+
+                    // £15 golden goodybag
+                    "BD044" -> R.drawable.goodybag_15_golden_reservetank
+
+                    // £20 goodybag
+                    "BD041" -> R.drawable.goodybag_20_reservetank
+
+                    // £20 golden goodybag
+                    // "BD045" -> R.drawable.goodybag_20_golden
+
+                    // Unknown!
+                    else -> R.drawable.goodybag_blank
+                }
+            }
+
+            return when (sku) {
                 // £6 goodybag
-                "BD039" -> "goodybag_6"
+                "BD039" -> R.drawable.goodybag_6
 
                 // £8 goodybag
-                "BD040" -> "goodybag_8"
+                "BD040" -> R.drawable.goodybag_8
 
                 // £10 goodybag
-                "BD036" -> "goodybag_10"
+                "BD036" -> R.drawable.goodybag_10
 
                 // £10 golden goodybag
-                "BD043" -> "goodybag_10_golden"
+                "BD043" -> R.drawable.goodybag_10_golden
 
                 // £12 goodybag
-                "BD037" -> "goodybag_12"
+                "BD037" -> R.drawable.goodybag_12
 
                 // £15 goodybag
-                "BD038" -> "goodybag_15"
+                "BD038" -> R.drawable.goodybag_15
 
                 // £15 golden goodybag
-                "BD044" -> "goodybag_15_golden"
+                "BD044" -> R.drawable.goodybag_15_golden
 
                 // £20 goodybag
-                "BD041" -> "goodybag_20"
+                "BD041" -> R.drawable.goodybag_20
 
                 // £20 golden goodybag
-                "BD045" -> "goodybag_15_golden"
+                "BD045" -> R.drawable.goodybag_20_golden
 
                 // £25 goodybag
-                "BD042" -> "goodybag_25"
+                "BD042" -> R.drawable.goodybag_25
 
                 // £35 golden goodybag
-                "BD046" -> "goodybag_35_golden"
+                "BD046" -> R.drawable.goodybag_35_golden
 
                 // Unknown!
-                else -> "goodybag_blank"
+                else -> R.drawable.goodybag_blank
             }
-
-            if (reserveAllowance != null) {
-                drawableName += "_reservetank"
-            }
-
-            return "@drawable/$drawableName";
         }
 }
