@@ -120,6 +120,7 @@ fun GetAccountInfo(
             }
         },
         Response.ErrorListener { error ->
+            Log.d("ERR/acct data", error.toString())
             callback.invoke(null)
         }) {
         override fun getHeaders(): Map<String, String> {

@@ -23,7 +23,7 @@ class LoginNoticeFragment : Fragment() {
     ): View? {
         var thisView = inflater.inflate(R.layout.fragment_login_notice, container, false)
 
-        _beginSignInButton = thisView?.findViewById<Button>(R.id.signInButton)
+        _beginSignInButton = thisView?.findViewById(R.id.signInButton)
 
         _beginSignInButton?.setOnClickListener {
             findNavController().navigate(R.id.action_loginNoticeFragment_to_loginEnterInfoFragment)
@@ -34,7 +34,7 @@ class LoginNoticeFragment : Fragment() {
 
     companion object {
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance() =
             LoginNoticeFragment().apply {
                 arguments = Bundle().apply {
                 }

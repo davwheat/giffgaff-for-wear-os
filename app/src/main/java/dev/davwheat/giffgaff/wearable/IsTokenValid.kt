@@ -52,6 +52,7 @@ fun IsTokenValid(
             }
         },
         Response.ErrorListener { error ->
+            Log.d("ERR/token valid", error.toString())
             callback.invoke(false, token)
         }) {
         override fun getHeaders(): Map<String, String> {
