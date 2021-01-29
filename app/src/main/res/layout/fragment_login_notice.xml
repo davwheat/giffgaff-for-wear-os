@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/gg_text_speak_center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gg_black"
+    android:padding="4dp"
+    android:theme="@style/CustomAppTheme"
+    app:boxedEdges="top|left|right"
+    app:layout_boxedEdges="top|left|right"
+    tools:context=".LoginNoticeFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:paddingBottom="15dp"
+        app:layout_boxedEdges="top|left|right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/gg_text_speak_up_center"
+                android:text="@string/sign_in_info_required_description_primary" />
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/gg_text_whisper_center"
+                android:text="@string/sign_in_info_required_description_secondary" />
+
+            <Button
+                android:id="@+id/signInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sign_in_info_button_text" />
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.wear.widget.BoxInsetLayout>

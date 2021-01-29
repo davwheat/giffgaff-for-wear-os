@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="gg_text_base">
+        <item name="android:fontFamily">@font/poppins</item>
+        <item name="android:textColor">@color/gg_white</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginBottom">4dp</item>
+    </style>
+
+    <style name="gg_text_speak" parent="gg_text_base">
+        <item name="android:textSize">16dp</item>
+        <item name="android:lineHeight">20dp</item>
+    </style>
+
+    <style name="gg_text_speak_center" parent="gg_text_speak">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="gg_text_whisper" parent="gg_text_base">
+        <item name="android:textSize">14dp</item>
+        <item name="android:lineHeight">18dp</item>
+    </style>
+
+    <style name="gg_text_whisper_center" parent="gg_text_whisper">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="gg_text_speak_up" parent="gg_text_speak">
+        <item name="android:textFontWeight">700</item>
+    </style>
+
+    <style name="gg_text_speak_up_center" parent="gg_text_speak_up">
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="primaryButton" parent="gg_text_whisper">
+        <item name="android:background">@drawable/yellow_cta_button</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+        <item name="android:textColor">@color/gg_black</item>
+        <item name="android:textFontWeight">700</item>
+        <item name="android:lineHeight">24dp</item>
+    </style>
+
+    <style name="secondaryButton" parent="primaryButton">
+        <item name="android:background">@drawable/normal_cta_button</item>
+    </style>
+
+    <style name="gg_text_input" parent="gg_text_speak"></style>
+
+    <style name="gg_loading_spinner" parent="android:Widget.Material.ProgressBar.Large">
+        <item name="android:indeterminateDrawable">@drawable/gg_loading_spinner</item>
+        <item name="android:progressDrawable">@drawable/gg_goodybag_meter</item>
+    </style>
+
+</resources>

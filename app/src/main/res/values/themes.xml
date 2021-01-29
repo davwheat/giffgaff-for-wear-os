@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CustomAppTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:buttonStyle">@style/primaryButton</item>
+        <item name="android:editTextStyle">@style/gg_text_input</item>
+        <item name="android:textViewStyle">@style/gg_text_speak</item>
+        <item name="android:progressBarStyle">@style/gg_loading_spinner</item>
+    </style>
+
+</resources>

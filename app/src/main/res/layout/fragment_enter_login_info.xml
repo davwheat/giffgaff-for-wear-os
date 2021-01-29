@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/gg_text_speak_center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gg_black"
+    android:padding="4dp"
+    android:theme="@style/CustomAppTheme"
+    app:boxedEdges="top|left|right"
+    app:layout_boxedEdges="top|left|right"
+    tools:context=".LoginEnterInfoFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:paddingBottom="15dp"
+        app:layout_boxedEdges="top|left|right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                style="@style/gg_text_speak_up_center"
+                android:text="@string/sign_in_header" />
+
+            <EditText
+                android:id="@+id/memberNameTextField"
+                style="@style/gg_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/sign_in_membername_label"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/passwordTextField"
+                style="@style/gg_text_input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/sign_in_password_label"
+                android:inputType="textPassword" />
+
+            <Button
+                android:id="@+id/signInButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/sign_in_info_button_text" />
+        </LinearLayout>
+    </ScrollView>
+
+
+    <FrameLayout
+        android:id="@+id/progressBarHolder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:background="#80000000"
+        android:clickable="true"
+        android:visibility="gone">
+
+        <ProgressBar
+            style="@style/gg_loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
+
+</androidx.wear.widget.BoxInsetLayout>

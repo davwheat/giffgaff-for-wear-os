@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/gg_text_speak_center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gg_black"
+    android:padding="4dp"
+    android:theme="@style/CustomAppTheme"
+    app:boxedEdges="left|right"
+    app:layout_boxedEdges="left|right"
+    tools:context=".AccountDetailsFragment">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:foregroundGravity="center"
+        android:paddingBottom="15dp"
+        app:layout_boxedEdges="top|left|right">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:id="@+id/fetchingDataMessageContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/welcomeMemberTextView"
+                    style="@style/gg_text_speak_up_center"
+                    android:text="" />
+
+                <ProgressBar
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:indeterminate="true" />
+
+                <TextView
+                    style="@style/gg_text_speak_up_center"
+                    android:text="@string/account_fetching_data" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/allDataContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/mobileNumber"
+                    style="@style/gg_text_whisper_center"
+                    android:text="" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/goodybagImage"
+                        android:layout_width="0dp"
+                        android:layout_height="64dp"
+                        app:layout_constrainedHeight="true"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.5" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/noGoodybag"
+                    style="@style/gg_text_whisper_center"
+                    android:text="@string/account_no_goodybag"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/goodybagDataRemainingTextView"
+                    style="@style/gg_text_speak_up_center"
+                    android:text="" />
+
+                <ProgressBar
+                    android:id="@+id/dataMeter"
+                    style="@style/gg_loading_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:max="100"
+                    android:progress="100" />
+
+                <TextView
+                    android:id="@+id/unlimitedCallsAndTexts"
+                    style="@style/gg_text_speak_center"
+                    android:text="@string/account_unlimited_calls_and_texts" />
+
+                <TextView
+                    android:id="@+id/creditText"
+                    style="@style/gg_text_speak_center"
+                    android:text="" />
+
+                <Button
+                    android:id="@+id/refreshDataButton"
+                    style="@style/primaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_action_refresh" />
+
+                <Button
+                    android:id="@+id/logOutButton"
+                    style="@style/secondaryButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/account_action_log_out" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.wear.widget.BoxInsetLayout>

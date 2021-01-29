@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loadingFragment">
+
+    <fragment
+        android:id="@+id/loginNoticeFragment"
+        android:name="dev.davwheat.giffgaff.wearable.LoginNoticeFragment"
+        android:label="fragment_login_notice"
+        tools:layout="@layout/fragment_login_notice">
+        <action
+            android:id="@+id/action_loginNoticeFragment_to_loginEnterInfoFragment"
+            app:destination="@id/loginEnterInfoFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginEnterInfoFragment"
+        android:name="dev.davwheat.giffgaff.wearable.LoginEnterInfoFragment"
+        android:label="fragment_enter_login_info"
+        tools:layout="@layout/fragment_enter_login_info">
+        <action
+            android:id="@+id/action_loginEnterInfoFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loadingFragment"
+        android:name="dev.davwheat.giffgaff.wearable.LoadingFragment"
+        android:label="fragment_loading"
+        tools:layout="@layout/fragment_loading">
+        <action
+            android:id="@+id/action_loadingFragment_to_loginNoticeFragment"
+            app:destination="@id/loginNoticeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/loadingFragment"
+            app:popUpToInclusive="true" />
+        <action
+            android:id="@+id/action_loadingFragment_to_accountDetailsFragment"
+            app:destination="@id/accountDetailsFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popUpTo="@id/loadingFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/accountDetailsFragment"
+        android:name="dev.davwheat.giffgaff.wearable.AccountDetailsFragment"
+        android:label="fragment_account_details"
+        tools:layout="@layout/fragment_account_details">
+        <action
+            android:id="@+id/action_accountDetailsFragment_to_loginNoticeFragment"
+            app:destination="@id/loginNoticeFragment"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out" />
+    </fragment>
+</navigation>

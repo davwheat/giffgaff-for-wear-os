@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From https://www.giffgaff.design/design-fundamentals/colour-palette/ -->
+    <color name="gg_black">#000000</color>
+    <color name="gg_white">#FFFFFF</color>
+
+    <color name="gg_light_pink">#EB5F8E</color>
+    <color name="gg_light_green">#72B72A</color>
+    <color name="gg_yellow">#FCC31E</color>
+    <color name="gg_light_blue">#35ADCE</color>
+
+    <color name="gg_graphite">#2F2E31</color>
+
+    <color name="gg_yellow_button_highlight">#FFD966</color>
+    <color name="gg_button_highlight">#ECECEC</color>
+</resources>

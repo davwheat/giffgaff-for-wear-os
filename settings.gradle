@@ -1,0 +1,2 @@
+rootProject.name = "giffgaff for Wear OS"
+include ':app'

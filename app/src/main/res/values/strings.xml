@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">giffgaff for Wear OS</string>
+
+    <string name="token_invalid_on_launch">Please log in again</string>
+    <string name="welcome_member">Logged in as %1$s</string>
+
+    <!-- Sign in notice fragment -->
+    <string name="sign_in_info_button_text">Sign in</string>
+    <string name="sign_in_info_required_description_primary">Sign in to giffgaff</string>
+    <string name="sign_in_info_required_description_secondary">Your details will be stored on your watch and only be sent to giffgaff for logging in.</string>
+
+    <!-- Sign in page -->
+    <string name="sign_in_header">Sign in</string>
+    <string name="sign_in_button_text">@string/sign_in_header</string>
+    <string name="sign_in_membername_label">Member name or phone number</string>
+    <string name="sign_in_password_label">Password</string>
+    <string name="sign_in_invalid_details_message">Looks like that\'s not the right account info. Your account will be locked for 30 mins after 3 login failures.</string>
+    <string name="sign_in_blank_details_message">Please enter your member name and password.</string>
+    <string name="sign_in_locked_message">Oh no, your account\'s been locked. Try again in 30 mins, or reset your password to gain access now.</string>
+
+    <!-- Account details page -->
+    <string name="account_welcome">Welcome %1$s</string>
+    <string name="account_fetching_data">Fetching account info…</string>
+
+    <string name="account_data_remaining">%1$s remaining</string>
+    <string name="account_no_goodybag">No active goodybag</string>
+    <string name="account_unlimited_calls_and_texts">Unltd. mins/texts</string>
+    <string name="account_credit_balance">£%.2f credit</string>
+
+    <string name="account_action_log_out">Log out</string>
+    <string name="account_action_refresh">Refresh</string>
+
+    <!-- API details -->
+    <string name="api_graphql_endpoint">"https://publicapi.giffgaff.com/gateway/graphql"</string>
+    <string name="api_oauth_endpoint">"https://publicapi.giffgaff.com/gateway/graphql"</string>
+
+    <string name="api_oauth_master_token">"Basic NGEwNWJmMjE5YjM5ODU2NDdkOWI5YTNiYTYxMGE5Y2U6T1F2NGNmaXlvbDhUdkNXNHlpTEdqMGMxQWtUUjNOMkpmUnpxN1hHcU14az0="</string>
+
+    <string name="api_user_agent">"com.giffgaffmobile.controller/8.23.8 (device: Android Smartwatch; OS: WearOS)"</string>
+    <string name="api_x_request_info">"This request came from a community-made app to allow members to check their giffgaff account from their Wear OS Smartwatch"</string>
+    <string name="api_x_contact_info">"mrjeeves on the giffgaff community"</string>
+</resources>
