@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">giffgaff for Wear OS</string>
 
+    <string name="testing_username">"google_testing_usr"</string>
+    <string name="testing_password">"ZbsWNyy1cm28KXQH8Ag9BVmdXsWtK0zOld9ERXipEsGS2TeMqq1UA09ffabJsQ7F"</string>
+    <string name="testing_token">"ZbsWNyy1cm28KXQH8Ag9BVmdXsWtK0zOld9ERXipEsGS2TeMqq1UA09ffabJsQ7F"</string>
+
     <string name="token_invalid_on_launch">Please log in again</string>
     <string name="welcome_member">Logged in as %1$s</string>
 
