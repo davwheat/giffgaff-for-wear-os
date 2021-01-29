@@ -87,11 +87,12 @@
                 <TextView
                     android:id="@+id/goodybagDataRemainingTextView"
                     style="@style/gg_text_speak_up_center"
-                    android:text="" />
+                    android:text=""
+                    android:layout_marginBottom="0dp"/>
 
                 <ProgressBar
                     android:id="@+id/dataMeter"
-                    style="@style/gg_loading_spinner"
+                    style="@style/gg_goodybag_meter"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:max="100"

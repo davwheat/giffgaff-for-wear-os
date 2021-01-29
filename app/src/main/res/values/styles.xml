@@ -55,7 +55,13 @@
 
     <style name="gg_loading_spinner" parent="android:Widget.Material.ProgressBar.Large">
         <item name="android:indeterminateDrawable">@drawable/gg_loading_spinner</item>
+    </style>
+
+    <style name="gg_goodybag_meter" parent="android:Widget.Material.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/gg_goodybag_meter</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingRight">8dp</item>
     </style>
 
 </resources>
