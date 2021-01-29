@@ -13,6 +13,12 @@ fun IsTokenValid(
     token: String, context: Context,
     callback: (isValid: Boolean, token: String) -> Unit
 ): Boolean {
+    // If testing token, it's valid!
+    if (token == context.getString(R.string.testing_token)) {
+        callback.invoke(true, token)
+        return true
+    }
+
     val GIFFGAFF_GQL_API_URL = context.getString(R.string.api_graphql_endpoint)
 
     val QUERY =

@@ -73,43 +73,68 @@ class LoginEnterInfoFragment : Fragment() {
             } else {
                 showLoadingSpinner()
 
-                makeTokenRequest(membername, password, requireContext()) { token ->
-                    if (token == null) {
-                        // Invalid token
-                        Toast.makeText(
-                            context,
-                            getString(R.string.sign_in_invalid_details_message),
-                            Toast.LENGTH_LONG
-                        ).show()
-                        hideLoadingSpinner()
-                    } else {
-                        Toast.makeText(
-                            context,
-                            getString(R.string.welcome_member, membername),
-                            Toast.LENGTH_LONG
-                        )
-                            .show()
+                if (membername == getString(R.string.testing_username) && password == getString(R.string.testing_password)) {
+                    Toast.makeText(
+                        context,
+                        getString(R.string.welcome_member, membername),
+                        Toast.LENGTH_LONG
+                    )
+                        .show()
 
-                        requireActivity().getPreferences(Context.MODE_PRIVATE)
-                            .edit()
-                            .putString("membername", membername)
-                            .putString("password", password)
-                            .putString("token", token)
-                            .apply()
+                    requireActivity().getPreferences(Context.MODE_PRIVATE)
+                        .edit()
+                        .putString("membername", membername)
+                        .putString("password", password)
+                        .putString("token", getString(R.string.testing_token))
+                        .apply()
 
 
-                        Log.d(
-                            "giffgaff Wear",
-                            "Member name: $membername\nPassword: <hidden>\nToken: ${
-                                token.substring(
-                                    0,
-                                    16
-                                )
-                            }..."
-                        )
+                    Log.d(
+                        "giffgaff Wear",
+                        "Member name: $membername\nPassword: <hidden>\nToken: N/A..."
+                    )
 
-                        findNavController().navigate(R.id.action_loginEnterInfoFragment_to_accountDetailsFragment)
-                        hideLoadingSpinner()
+                    findNavController().navigate(R.id.action_loginEnterInfoFragment_to_accountDetailsFragment)
+                    hideLoadingSpinner()
+                } else {
+                    makeTokenRequest(membername, password, requireContext()) { token ->
+                        if (token == null) {
+                            // Invalid token
+                            Toast.makeText(
+                                context,
+                                getString(R.string.sign_in_invalid_details_message),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            hideLoadingSpinner()
+                        } else {
+                            Toast.makeText(
+                                context,
+                                getString(R.string.welcome_member, membername),
+                                Toast.LENGTH_LONG
+                            )
+                                .show()
+
+                            requireActivity().getPreferences(Context.MODE_PRIVATE)
+                                .edit()
+                                .putString("membername", membername)
+                                .putString("password", password)
+                                .putString("token", token)
+                                .apply()
+
+
+                            Log.d(
+                                "giffgaff Wear",
+                                "Member name: $membername\nPassword: <hidden>\nToken: ${
+                                    token.substring(
+                                        0,
+                                        16
+                                    )
+                                }..."
+                            )
+
+                            findNavController().navigate(R.id.action_loginEnterInfoFragment_to_accountDetailsFragment)
+                            hideLoadingSpinner()
+                        }
                     }
                 }
             }

@@ -3,6 +3,7 @@ package dev.davwheat.giffgaff.wearable
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import android.view.View.VISIBLE
 import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.widget.*
+import androidx.core.content.res.ResourcesCompat
 import androidx.navigation.fragment.findNavController
 
 class AccountDetailsFragment : Fragment() {
@@ -101,6 +103,12 @@ class AccountDetailsFragment : Fragment() {
         if (token == "") {
             invalidateAccountDetails()
             return;
+        } else if (token == getString(R.string.testing_token)) {
+            // Testing page
+            val fakeData = GetTestingData()
+            RenderData(fakeData)
+            hideFetchingDataView()
+            return;
         }
 
         GetAccountInfo(token!!, requireContext()) { data ->
@@ -109,59 +117,64 @@ class AccountDetailsFragment : Fragment() {
                 invalidateAccountDetails()
             } else {
                 // Valid data!
-                _mobileNumberText.text = data.phoneNumber
-                _creditText.text = getString(
-                    R.string.account_credit_balance,
-                    data.creditBalance.toDouble() / 100
-                )
-
-                val goodybag = data.goodybag;
-
-                if (goodybag != null) {
-                    // goodybag on account
-                    _goodybagDataRemainingTextView.visibility =
-                        VISIBLE
-                    _goodybagUnlimitedCallsTexts.visibility =
-                        VISIBLE
-                    _noGoodybag.visibility = GONE
-
-                    // set the image for it
-                    val goodybagDrawable =
-                        resources.getIdentifier(goodybag.goodybagDrawableName, null, null)
-                    _goodybagImage.setImageResource(goodybagDrawable)
-
-                    // set remaining data text
-                    _goodybagDataRemainingTextView.text =
-                        getString(R.string.account_data_remaining, "${goodybag.dataRemainingGB} GB")
-
-                    _goodybagDataMeter.visibility = VISIBLE
-                    _goodybagDataMeter.max = if (goodybag.hasReserve) {
-                        goodybag.dataAllowance
-                    } else {
-                        goodybag.dataAllowance + goodybag.reserveAllowance!!
-                    }
-                    _goodybagDataMeter.progress = if (goodybag.hasReserve) {
-                        goodybag.dataRemaining
-                    } else {
-                        goodybag.dataRemaining + goodybag.reserveRemaining!!
-                    }
-                } else {
-                    // No goodybag
-                    view?.findViewById<ImageView>(R.id.goodybagImage)
-                        ?.setImageResource(R.drawable.goodybag_blank)
-
-                    _noGoodybag.visibility = VISIBLE
-                    _goodybagDataRemainingTextView.visibility =
-                        GONE
-                    _goodybagUnlimitedCallsTexts.visibility =
-                        GONE
-                    _goodybagDataMeter.visibility = GONE
-                }
-
+                RenderData(data)
                 hideFetchingDataView()
             }
         }
 
+    }
+
+    fun RenderData(data: AccountInfo) {
+        _mobileNumberText.text = data.phoneNumber
+        _creditText.text = getString(
+            R.string.account_credit_balance,
+            data.creditBalance.toDouble() / 100
+        )
+
+        val goodybag = data.goodybag;
+
+        if (goodybag != null) {
+            // goodybag on account
+            _goodybagDataRemainingTextView.visibility =
+                VISIBLE
+            _goodybagUnlimitedCallsTexts.visibility =
+                VISIBLE
+            _noGoodybag.visibility = GONE
+
+            // set the image for it
+            _goodybagImage.setImageDrawable(
+                ResourcesCompat.getDrawable(resources, goodybag.goodybagDrawableId, requireContext().theme)
+            )
+
+            // set remaining data text
+            _goodybagDataRemainingTextView.text =
+                getString(
+                    R.string.account_data_remaining, "${goodybag.dataRemainingGB} GB"
+                )
+
+            _goodybagDataMeter.visibility = VISIBLE
+            _goodybagDataMeter.max = if (goodybag.hasReserve) {
+                goodybag.dataAllowance
+            } else {
+                goodybag.dataAllowance + goodybag.reserveAllowance!!
+            }
+            _goodybagDataMeter.progress = if (goodybag.hasReserve) {
+                goodybag.dataRemaining
+            } else {
+                goodybag.dataRemaining + goodybag.reserveRemaining!!
+            }
+        } else {
+            // No goodybag
+            view?.findViewById<ImageView>(R.id.goodybagImage)
+                ?.setImageResource(R.drawable.goodybag_blank)
+
+            _noGoodybag.visibility = VISIBLE
+            _goodybagDataRemainingTextView.visibility =
+                GONE
+            _goodybagUnlimitedCallsTexts.visibility =
+                GONE
+            _goodybagDataMeter.visibility = GONE
+        }
     }
 
     fun showFetchingDataView() {
