@@ -81,7 +81,7 @@ class LoginEnterInfoFragment : Fragment() {
                     findNavController().navigate(R.id.action_loginEnterInfoFragment_to_accountDetailsFragment)
                     hideLoadingSpinner()
                 } else {
-                    makeTokenRequest(membername, password, requireContext()) { token ->
+                    Helpers().makeTokenRequest(membername, password, requireContext()) { token ->
                         if (token == null) {
                             // Invalid token
                             Toast.makeText(

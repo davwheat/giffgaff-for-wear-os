@@ -53,7 +53,7 @@ class MainActivity : AppCompatActivity() {
 
             if (token != "") {
                 Log.d("Initial Load", "Checking validity of existing token...")
-                IsTokenValid(token, baseContext) { isValid, _ ->
+                Helpers().IsTokenValid(token, baseContext) { isValid, _ ->
                     if (isValid) {
                         // Valid token
                         Log.d("Initial Load", "Token is valid. Continuing...")
@@ -73,10 +73,11 @@ class MainActivity : AppCompatActivity() {
     fun FetchNewToken(membername: String, password: String) {
         Log.d("giffgaffWear", "Logging in as $membername with saved password")
 
-        makeTokenRequest(membername, password, baseContext) { token ->
+        Helpers().makeTokenRequest(membername, password, baseContext) { token ->
             // Callback when we get response
             if (token == null || token.startsWith("ERR:")) {
                 // Invalid/no token
+                Log.d("giffgaffWear", "Failed to log in with saved credentials")
                 Toast.makeText(
                     baseContext,
                     getString(R.string.token_invalid_on_launch),

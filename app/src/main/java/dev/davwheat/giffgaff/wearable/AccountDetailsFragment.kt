@@ -111,7 +111,7 @@ class AccountDetailsFragment : Fragment() {
             return;
         }
 
-        GetAccountInfo(token!!, requireContext()) { data ->
+        Helpers().GetAccountInfo(token!!, requireContext()) { data ->
             if (data == null) {
                 // Invalid data received, or error occurred.
                 invalidateAccountDetails()
