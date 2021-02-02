@@ -125,7 +125,7 @@ class AccountDetailsFragment : Fragment() {
     }
 
     fun RenderData(data: AccountInfo) {
-        _mobileNumberText.text = data.phoneNumber
+        _mobileNumberText.text = data.phoneNumber?.let { Helpers().formatPhoneNumber(it) }
         _creditText.text = getString(
             R.string.account_credit_balance,
             data.creditBalance.toDouble() / 100
