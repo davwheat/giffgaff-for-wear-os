@@ -14,6 +14,8 @@ class Goodybag(
 
     val dataRemaining: Int,
     val reserveRemaining: Int?,
+
+    val isUnlimitedData: Boolean,
 ) {
     private fun ToGB(x: Double): Double {
         return round(x / 1024 / 1024 * 100) / 100

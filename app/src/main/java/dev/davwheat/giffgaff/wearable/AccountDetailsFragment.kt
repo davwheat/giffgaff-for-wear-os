@@ -143,25 +143,37 @@ class AccountDetailsFragment : Fragment() {
 
             // set the image for it
             _goodybagImage.setImageDrawable(
-                ResourcesCompat.getDrawable(resources, goodybag.goodybagDrawableId, requireContext().theme)
+                ResourcesCompat.getDrawable(
+                    resources,
+                    goodybag.goodybagDrawableId,
+                    requireContext().theme
+                )
             )
 
-            // set remaining data text
-            _goodybagDataRemainingTextView.text =
-                getString(
-                    R.string.account_data_remaining, "${goodybag.dataRemainingGB} GB"
-                )
+            if (goodybag.isUnlimitedData) {
+                _goodybagDataRemainingTextView.text = getString(R.string.account_unlimited_data)
 
-            _goodybagDataMeter.visibility = VISIBLE
-            _goodybagDataMeter.max = if (goodybag.hasReserve) {
-                goodybag.dataAllowance
+                _goodybagDataMeter.visibility = VISIBLE
+                _goodybagDataMeter.max = 1
+                _goodybagDataMeter.progress = 1
             } else {
-                goodybag.dataAllowance + goodybag.reserveAllowance!!
-            }
-            _goodybagDataMeter.progress = if (goodybag.hasReserve) {
-                goodybag.dataRemaining
-            } else {
-                goodybag.dataRemaining + goodybag.reserveRemaining!!
+                // set remaining data text
+                _goodybagDataRemainingTextView.text =
+                    getString(
+                        R.string.account_data_remaining, "${goodybag.dataRemainingGB} GB"
+                    )
+
+                _goodybagDataMeter.visibility = VISIBLE
+                _goodybagDataMeter.max = if (goodybag.hasReserve) {
+                    goodybag.dataAllowance
+                } else {
+                    goodybag.dataAllowance + goodybag.reserveAllowance!!
+                }
+                _goodybagDataMeter.progress = if (goodybag.hasReserve) {
+                    goodybag.dataRemaining
+                } else {
+                    goodybag.dataRemaining + goodybag.reserveRemaining!!
+                }
             }
         } else {
             // No goodybag

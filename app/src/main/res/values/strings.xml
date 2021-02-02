@@ -27,6 +27,7 @@
     <string name="account_fetching_data">Fetching account info…</string>
 
     <string name="account_data_remaining">%1$s remaining</string>
+    <string name="account_unlimited_data">Unlimited data</string>
     <string name="account_no_goodybag">No active goodybag</string>
     <string name="account_unlimited_calls_and_texts">Unltd. mins/texts</string>
     <string name="account_credit_balance">£%.2f credit</string>
