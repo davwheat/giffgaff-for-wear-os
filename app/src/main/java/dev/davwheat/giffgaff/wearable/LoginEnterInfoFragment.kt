@@ -86,7 +86,15 @@ class LoginEnterInfoFragment : Fragment() {
                             // Invalid token
                             Toast.makeText(
                                 context,
-                                getString(R.string.sign_in_invalid_details_message),
+                                getString(R.string.unknown_error),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            hideLoadingSpinner()
+                        } else if (token.startsWith("ERR:")) {
+                            // Other error
+                            Toast.makeText(
+                                context,
+                                token.substring(4),
                                 Toast.LENGTH_LONG
                             ).show()
                             hideLoadingSpinner()

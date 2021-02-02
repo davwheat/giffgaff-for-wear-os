@@ -75,7 +75,7 @@ class MainActivity : AppCompatActivity() {
 
         makeTokenRequest(membername, password, baseContext) { token ->
             // Callback when we get response
-            if (token == null) {
+            if (token == null || token.startsWith("ERR:")) {
                 // Invalid/no token
                 Toast.makeText(
                     baseContext,

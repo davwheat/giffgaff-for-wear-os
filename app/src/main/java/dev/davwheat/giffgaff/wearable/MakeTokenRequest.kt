@@ -2,12 +2,14 @@ package dev.davwheat.giffgaff.wearable
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import javax.net.ssl.SSLHandshakeException
 
 fun makeTokenRequest(
     username: String,
@@ -34,12 +36,19 @@ fun makeTokenRequest(
             if (response.has("access_token")) {
                 callback.invoke(response.getString("access_token"))
             } else {
-                callback.invoke(null)
+                callback.invoke("ERR:" + context.getString(R.string.sign_in_invalid_details_message))
             }
         },
         Response.ErrorListener { error ->
-            Log.d("giffgaff Wear", error.toString())
-            callback.invoke(null)
+            Log.d("giffgaff Wear", error.networkResponse.data.toString())
+
+            if (error is SSLHandshakeException) {
+                callback.invoke("ERR:" + context.getString(R.string.invalid_ssl))
+            } else if (error is AuthFailureError) {
+                callback.invoke("ERR:" + context.getString(R.string.sign_in_invalid_details_message))
+            } else {
+                callback.invoke(null);
+            }
         }) {
         override fun getHeaders(): Map<String, String> {
             val headers = HashMap<String, String>()
