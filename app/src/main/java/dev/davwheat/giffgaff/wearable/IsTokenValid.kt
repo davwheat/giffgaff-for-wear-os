@@ -10,7 +10,8 @@ import org.json.JSONObject
 
 
 fun IsTokenValid(
-    token: String, context: Context,
+    token: String,
+    context: Context,
     callback: (isValid: Boolean, token: String) -> Unit
 ): Boolean {
     // If testing token, it's valid!
