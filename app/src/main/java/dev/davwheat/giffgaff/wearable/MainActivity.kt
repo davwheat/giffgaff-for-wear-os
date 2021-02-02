@@ -3,7 +3,9 @@ package dev.davwheat.giffgaff.wearable
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.AttributeSet
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -20,12 +22,12 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun onValidToken(membername: String, password: String, token: String) {
-        Toast.makeText(
-            baseContext,
-            getString(R.string.welcome_member, membername),
-            Toast.LENGTH_LONG
-        )
-            .show()
+//        Toast.makeText(
+//            baseContext,
+//            getString(R.string.welcome_member, membername),
+//            Toast.LENGTH_LONG
+//        )
+//            .show()
 
         preferences.edit()
             .putString("membername", membername)
