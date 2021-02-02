@@ -9,13 +9,13 @@
     <string name="welcome_member">Logged in as %1$s</string>
 
     <!-- Sign in notice fragment -->
-    <string name="sign_in_info_button_text">Sign in</string>
+    <string name="sign_in_info_button_text">Continue</string>
     <string name="sign_in_info_required_description_primary">Sign in to giffgaff</string>
     <string name="sign_in_info_required_description_secondary">Your details will be stored on your watch and only be sent to giffgaff for logging in.</string>
 
     <!-- Sign in page -->
     <string name="sign_in_header">Sign in</string>
-    <string name="sign_in_button_text">@string/sign_in_header</string>
+    <string name="sign_in_button_text">Sign in</string>
     <string name="sign_in_membername_label">Member name or phone number</string>
     <string name="sign_in_password_label">Password</string>
     <string name="sign_in_invalid_details_message">Looks like that\'s not the right account info. Your account will be locked for 30 mins after 3 login failures.</string>
