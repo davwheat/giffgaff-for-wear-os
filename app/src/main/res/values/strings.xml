@@ -36,7 +36,7 @@
 
     <!-- API details -->
     <string name="api_graphql_endpoint">"https://publicapi.giffgaff.com/gateway/graphql"</string>
-    <string name="api_oauth_endpoint">"https://publicapi.giffgaff.com/gateway/graphql"</string>
+    <string name="api_oauth_endpoint">"https://id.giffgaff.com/auth/oauth/token"</string>
 
     <string name="api_oauth_master_token">"Basic NGEwNWJmMjE5YjM5ODU2NDdkOWI5YTNiYTYxMGE5Y2U6T1F2NGNmaXlvbDhUdkNXNHlpTEdqMGMxQWtUUjNOMkpmUnpxN1hHcU14az0="</string>
 
