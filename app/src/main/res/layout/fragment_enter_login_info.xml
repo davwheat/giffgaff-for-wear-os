@@ -6,24 +6,22 @@
     style="@style/gg_text_speak_center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="0dp"
     android:background="@color/gg_black"
-    android:padding="4dp"
     android:theme="@style/CustomAppTheme"
-    app:boxedEdges="top|left|right"
-    app:layout_boxedEdges="top|left|right"
     tools:context=".LoginEnterInfoFragment">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foregroundGravity="center"
-        android:paddingBottom="15dp"
-        app:layout_boxedEdges="top|left|right">
+        android:foregroundGravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="30dp">
 
             <TextView
                 android:id="@+id/textView"
@@ -51,7 +49,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="@string/sign_in_info_button_text" />
+                android:text="@string/sign_in_button_text" />
         </LinearLayout>
     </ScrollView>
 

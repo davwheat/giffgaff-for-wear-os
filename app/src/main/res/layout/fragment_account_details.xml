@@ -6,30 +6,29 @@
     style="@style/gg_text_speak_center"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="0dp"
     android:background="@color/gg_black"
-    android:padding="4dp"
     android:theme="@style/CustomAppTheme"
-    app:boxedEdges="left|right"
-    app:layout_boxedEdges="left|right"
     tools:context=".AccountDetailsFragment">
-
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:foregroundGravity="center"
-        android:paddingBottom="15dp"
-        app:layout_boxedEdges="top|left|right">
+        android:foregroundGravity="center">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="30dp">
 
             <LinearLayout
                 android:id="@+id/fetchingDataMessageContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/gg_black"
+                android:gravity="center"
                 android:orientation="vertical">
 
                 <TextView
@@ -45,6 +44,7 @@
 
                 <TextView
                     style="@style/gg_text_speak_up_center"
+                    android:gravity="center"
                     android:text="@string/account_fetching_data" />
             </LinearLayout>
 
@@ -82,13 +82,13 @@
                     android:id="@+id/noGoodybag"
                     style="@style/gg_text_whisper_center"
                     android:text="@string/account_no_goodybag"
-                    android:visibility="gone" />
+                    android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/goodybagDataRemainingTextView"
                     style="@style/gg_text_speak_up_center"
-                    android:text=""
-                    android:layout_marginBottom="0dp"/>
+                    android:layout_marginBottom="0dp"
+                    android:text="" />
 
                 <ProgressBar
                     android:id="@+id/dataMeter"
@@ -113,6 +113,7 @@
                     style="@style/primaryButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:text="@string/account_action_refresh" />
 
                 <Button
