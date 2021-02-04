@@ -3,7 +3,6 @@ package dev.davwheat.giffgaff.wearable
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -39,12 +38,6 @@ class AccountDetailsFragment : Fragment() {
 
     private lateinit var _refreshDataButton: Button;
     private lateinit var _logOutButton: Button;
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,10 +88,10 @@ class AccountDetailsFragment : Fragment() {
         loadData();
     }
 
-    fun loadData() {
+    private fun loadData() {
         showFetchingDataView()
 
-        val token = _preferences.getString("token", "")
+        val token: String = _preferences.getString("token", "")
 
         if (token == "") {
             invalidateAccountDetails()
@@ -106,25 +99,27 @@ class AccountDetailsFragment : Fragment() {
         } else if (token == getString(R.string.testing_token)) {
             // Testing page
             val fakeData = GetTestingData()
-            RenderData(fakeData)
+            renderData(fakeData)
             hideFetchingDataView()
             return;
         }
 
-        Helpers().GetAccountInfo(token!!, requireContext()) { data ->
+        _token = token;
+
+        Helpers().getAccountInfo(token, requireContext()) { data ->
             if (data == null) {
                 // Invalid data received, or error occurred.
                 invalidateAccountDetails()
             } else {
                 // Valid data!
-                RenderData(data)
+                renderData(data)
                 hideFetchingDataView()
             }
         }
 
     }
 
-    fun RenderData(data: AccountInfo) {
+    private fun renderData(data: AccountInfo) {
         _mobileNumberText.text = data.phoneNumber?.let { Helpers().formatPhoneNumber(it) }
         _creditText.text = getString(
             R.string.account_credit_balance,
@@ -189,7 +184,7 @@ class AccountDetailsFragment : Fragment() {
         }
     }
 
-    fun showFetchingDataView() {
+    private fun showFetchingDataView() {
         _inAnimation = AlphaAnimation(0f, 1f)
         _inAnimation?.duration = 200
         _fetchingDataNoticeView?.animation = _inAnimation
@@ -197,7 +192,7 @@ class AccountDetailsFragment : Fragment() {
         _fetchingDataNoticeView?.visibility = VISIBLE
     }
 
-    fun hideFetchingDataView() {
+    private fun hideFetchingDataView() {
         _outAnimation = AlphaAnimation(1f, 0f)
         _outAnimation?.duration = 200
         _fetchingDataNoticeView?.animation = _outAnimation
@@ -211,12 +206,5 @@ class AccountDetailsFragment : Fragment() {
         findNavController().navigate(R.id.action_accountDetailsFragment_to_loginNoticeFragment)
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            AccountDetailsFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
-    }
+    companion object
 }

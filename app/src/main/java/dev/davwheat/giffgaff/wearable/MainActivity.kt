@@ -3,9 +3,7 @@ package dev.davwheat.giffgaff.wearable
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.AttributeSet
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -17,7 +15,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
     private lateinit var preferences: SharedPreferences
 
-    fun onInvalidToken() {
+    private fun onInvalidToken() {
         navController.navigate(R.id.action_loadingFragment_to_loginNoticeFragment)
     }
 
@@ -55,24 +53,24 @@ class MainActivity : AppCompatActivity() {
 
             if (token != "") {
                 Log.d("Initial Load", "Checking validity of existing token...")
-                Helpers().IsTokenValid(token, baseContext) { isValid, _ ->
+                Helpers().isTokenValid(token, baseContext) { isValid, _ ->
                     if (isValid) {
                         // Valid token
                         Log.d("Initial Load", "Token is valid. Continuing...")
                         onValidToken(membername, password, token)
                     } else {
-                        FetchNewToken(membername, password)
+                        fetchNewToken(membername, password)
                     }
                 }
             } else {
-                FetchNewToken(membername, password)
+                fetchNewToken(membername, password)
             }
         } else {
             onInvalidToken()
         }
     }
 
-    fun FetchNewToken(membername: String, password: String) {
+    private fun fetchNewToken(membername: String, password: String) {
         Log.d("giffgaffWear", "Logging in as $membername with saved password")
 
         Helpers().makeTokenRequest(membername, password, baseContext) { token ->

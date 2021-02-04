@@ -25,12 +25,6 @@ class LoginEnterInfoFragment : Fragment() {
     private var _membernameEl: EditText? = null
     private var _passwordEl: EditText? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -149,12 +143,5 @@ class LoginEnterInfoFragment : Fragment() {
         _progressBarHolder?.visibility = View.GONE
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            LoginEnterInfoFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
-    }
+    companion object
 }

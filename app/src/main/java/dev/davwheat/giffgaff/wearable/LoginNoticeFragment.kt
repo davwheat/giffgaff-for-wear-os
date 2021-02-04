@@ -11,12 +11,6 @@ import androidx.navigation.fragment.findNavController
 class LoginNoticeFragment : Fragment() {
     private var _beginSignInButton: Button? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-        }
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,12 +26,5 @@ class LoginNoticeFragment : Fragment() {
         return thisView
     }
 
-    companion object {
-        @JvmStatic
-        fun newInstance() =
-            LoginNoticeFragment().apply {
-                arguments = Bundle().apply {
-                }
-            }
-    }
+    companion object
 }
