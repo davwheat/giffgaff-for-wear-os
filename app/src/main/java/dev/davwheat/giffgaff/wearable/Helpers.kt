@@ -2,10 +2,14 @@ package dev.davwheat.giffgaff.wearable
 
 import android.content.Context
 import android.util.Log
+import com.android.volley.AuthFailureError
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import org.json.JSONObject
+import javax.net.ssl.SSLHandshakeException
 
 class Helpers {
     companion object {
@@ -20,7 +24,7 @@ class Helpers {
         return number;
     }
 
-    fun GetAccountInfo(
+    fun getAccountInfo(
         token: String,
         context: Context,
         callback: (data: AccountInfo?) -> Unit
@@ -169,20 +173,142 @@ class Helpers {
         queue.add(accountInfo)
     }
 
-    fun IsTokenValid(
+    fun isTokenValid(
         token: String,
         context: Context,
         callback: (isValid: Boolean, token: String) -> Unit
     ) {
-        dev.davwheat.giffgaff.wearable.IsTokenValid(token, context, callback)
+        // If testing token, it's valid!
+        if (token == context.getString(R.string.testing_token)) {
+            callback.invoke(true, token)
+            return
+        }
+
+        val GIFFGAFF_GQL_API_URL = context.getString(R.string.api_graphql_endpoint)
+
+        val QUERY =
+            """query checkTokenValidity {
+              member {
+                  memberName
+                  __typename
+              }
+          }""".trimIndent()
+
+        val queue = Volley.newRequestQueue(context)
+        queue.cache.clear();
+
+        val body = JSONObject()
+        body.put("query", QUERY)
+
+        val accountInfo = object : JsonObjectRequest(
+            Method.POST,
+            GIFFGAFF_GQL_API_URL,
+            body,
+            Response.Listener { response: JSONObject ->
+                if (response.has("data")) {
+                    // Received response -- current token is still valid
+                    callback.invoke(true, token)
+                } else {
+                    Log.d(
+                        "giffgaff Wear",
+                        "Existing token is no longer valid."
+                    )
+                    callback.invoke(false, token)
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("ERR/token valid", error.toString())
+                callback.invoke(false, token)
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+
+                headers["Authorization"] = "Bearer $token"
+
+                headers["user-agent"] = context.getString(R.string.api_user_agent)
+                headers["x-request-info"] = context.getString(R.string.api_x_request_info)
+                headers["x-contact-info"] = context.getString(R.string.api_x_contact_info)
+
+                return headers
+            }
+        }
+
+        queue.add(accountInfo)
     }
 
     fun makeTokenRequest(
         username: String,
         password: String,
         context: Context,
-        callback: (token: String?) -> Unit
+        callback: (success: Boolean, token: String, errorString: String) -> Unit
     ) {
-        dev.davwheat.giffgaff.wearable.makeTokenRequest(username, password, context, callback)
+        // Intercepted with a MITM proxy watching HTTP requests from the giffgaff app
+        // This token is what permits us to generate Bearer tokens for users
+        val GIFFGAFF_MASTER_AUTH_TOKEN = context.getString(R.string.api_oauth_master_token)
+
+        // OAuth API
+        val GIFFGAFF_OAUTH_URL = context.getString(R.string.api_oauth_endpoint)
+
+        val queue = Volley.newRequestQueue(context)
+        queue.cache.clear();
+
+        val tokenRequest = object : StringRequest(
+            Method.POST,
+            GIFFGAFF_OAUTH_URL,
+            Response.Listener { strResponse ->
+                val response = JSONObject(strResponse)
+
+                Log.d("giffgaff Wear", response.toString(2))
+                if (response.has("access_token")) {
+                    callback.invoke(true, response.getString("access_token"), "")
+                } else {
+                    callback.invoke(
+                        false,
+                        "",
+                        context.getString(R.string.sign_in_invalid_details_message)
+                    )
+                }
+            },
+            Response.ErrorListener { error ->
+                Log.d("giffgaff Wear", error.toString())
+
+                if (error.cause is SSLHandshakeException) {
+                    callback.invoke(false, "", context.getString(R.string.api_invalid_ssl))
+                } else if (error.cause is AuthFailureError) {
+                    callback.invoke(
+                        false,
+                        "",
+                        context.getString(R.string.sign_in_invalid_details_message)
+                    )
+                } else {
+                    callback.invoke(false, "", context.getString(R.string.api_unknown_error));
+                }
+            }) {
+            override fun getHeaders(): Map<String, String> {
+                val headers = HashMap<String, String>()
+
+                headers["authorization"] = GIFFGAFF_MASTER_AUTH_TOKEN
+                headers["accept"] = "application/json"
+
+                headers["user-agent"] = context.getString(R.string.api_user_agent)
+                headers["x-request-info"] = context.getString(R.string.api_x_request_info)
+                headers["x-contact-info"] = context.getString(R.string.api_x_contact_info)
+
+                return headers
+            }
+
+            override fun getParams(): Map<String, String> {
+                val params = HashMap<String, String>()
+
+                params["scope"] = "read"
+                params["grant_type"] = "password"
+                params["username"] = username
+                params["password"] = password
+
+                return params
+            }
+        }
+
+        queue.add(tokenRequest)
     }
 }
