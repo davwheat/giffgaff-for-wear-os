@@ -91,7 +91,7 @@ class AccountDetailsFragment : Fragment() {
     private fun loadData() {
         showFetchingDataView()
 
-        val token: String = _preferences.getString("token", "")
+        val token: String = _preferences.getString("token", "")!!
 
         if (token == "") {
             invalidateAccountDetails()
