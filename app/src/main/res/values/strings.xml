@@ -35,6 +35,11 @@
     <string name="account_action_log_out">Log out</string>
     <string name="account_action_refresh">Refresh</string>
 
+    <!-- Invalid SSL cert help fragment -->
+    <string name="ssl_handshake_fail_heading">SSL Handshake Failed</string>
+    <string name="ssl_handshake_fail_description_1">We couldn\'t connect to giffgaff\'s API securely.</string>
+    <string name="ssl_handshake_fail_description_2">This is usually an issue with the date and time on your watch. Check that it\'s within 2 minutes of the actual time.</string>
+
     <!-- API details -->
     <string name="api_graphql_endpoint">"https://publicapi.giffgaff.com/gateway/graphql"</string>
     <string name="api_oauth_endpoint">"https://id.giffgaff.com/auth/oauth/token"</string>
