@@ -19,14 +19,7 @@ class MainActivity : AppCompatActivity() {
         navController.navigate(R.id.action_loadingFragment_to_loginNoticeFragment)
     }
 
-    fun onValidToken(membername: String, password: String, token: String) {
-//        Toast.makeText(
-//            baseContext,
-//            getString(R.string.welcome_member, membername),
-//            Toast.LENGTH_LONG
-//        )
-//            .show()
-
+    private fun onValidToken(membername: String, password: String, token: String) {
         preferences.edit()
             .putString("membername", membername)
             .putString("password", password)
@@ -73,14 +66,25 @@ class MainActivity : AppCompatActivity() {
     private fun fetchNewToken(membername: String, password: String) {
         Log.d("giffgaffWear", "Logging in as $membername with saved password")
 
-        Helpers().makeTokenRequest(membername, password, baseContext) { token ->
+        Helpers().makeTokenRequest(
+            membername,
+            password,
+            baseContext
+        ) { success, token, errorString ->
             // Callback when we get response
-            if (token == null || token.startsWith("ERR:")) {
+            if (!success) {
+                // Invalid SSL is a user-fixable issue, so let's not invalidate
+                // the login info, but instead inform the user of the issue.
+                if (errorString == getString(R.string.api_invalid_ssl)) {
+                    navController.navigate(R.id.action_loadingFragment_to_invalidSslErrorHelp)
+                    return@makeTokenRequest;
+                }
+
                 // Invalid/no token
                 Log.d("giffgaffWear", "Failed to log in with saved credentials")
                 Toast.makeText(
                     baseContext,
-                    getString(R.string.token_invalid_on_launch),
+                    if (errorString === getString(R.string.api_unknown_error)) getString(R.string.token_invalid_on_launch) else errorString,
                     Toast.LENGTH_LONG
                 )
                     .show()

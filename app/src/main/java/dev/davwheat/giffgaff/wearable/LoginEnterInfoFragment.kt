@@ -75,20 +75,16 @@ class LoginEnterInfoFragment : Fragment() {
                     findNavController().navigate(R.id.action_loginEnterInfoFragment_to_accountDetailsFragment)
                     hideLoadingSpinner()
                 } else {
-                    Helpers().makeTokenRequest(membername, password, requireContext()) { token ->
-                        if (token == null) {
+                    Helpers().makeTokenRequest(
+                        membername,
+                        password,
+                        requireContext()
+                    ) { success, token, errorString ->
+                        if (!success) {
                             // Invalid token
                             Toast.makeText(
                                 context,
-                                getString(R.string.unknown_error),
-                                Toast.LENGTH_LONG
-                            ).show()
-                            hideLoadingSpinner()
-                        } else if (token.startsWith("ERR:")) {
-                            // Other error
-                            Toast.makeText(
-                                context,
-                                token.substring(4),
+                                errorString,
                                 Toast.LENGTH_LONG
                             ).show()
                             hideLoadingSpinner()
