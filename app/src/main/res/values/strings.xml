@@ -51,7 +51,7 @@
     <string name="api_x_contact_info">"mrjeeves on the giffgaff community"</string>
 
     <!-- API connection issues -->
-    <string name="unknown_error">Unknown error.</string>
-    <string name="invalid_ssl">Please check your connection. [SSL]</string>
-    <string name="invalid_dns">Please check your connection. [DNS]</string>
+    <string name="api_unknown_error">Unknown error.</string>
+    <string name="api_invalid_ssl">Please check your date and time settings.</string>
+    <string name="api_invalid_dns">Please check your connection. [DNS]</string>
 </resources>
